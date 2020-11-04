@@ -10,9 +10,14 @@ export const patientReducer = (state,action) =>{
             id:action.id,
             name: action.name
         }
-        return [state];
+        const allPatients = [...state.patients,newPatient]
+        return {patients: allPatients};
         case 'REMOVE_PATIENT' :
-            return state;
+            console.log(action);
+            const remaining = state.patients.filter(pt =>pt.id !==action.id );
+            const newState = {patients: remaining}
+            
+            return newState;
          default:
             return state;
     }

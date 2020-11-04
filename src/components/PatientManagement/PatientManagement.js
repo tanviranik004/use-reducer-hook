@@ -13,6 +13,7 @@ const PatientManagement = () => {
             id: state.patients.length
         })
         console.log(nameRef.current.value);
+        nameRef.current.value= '';
     }
 
     return (
@@ -22,6 +23,13 @@ const PatientManagement = () => {
                 <input ref={nameRef}>
                 </input>
             </form>
+            {
+                state.patients.map(pt=> <li 
+                    key ={pt.id}
+                    onClick={()=>dispatch({type: 'REMOVE_PATIENT', id: pt.id})}
+
+                    >{pt.name}</li>)
+            }
         </div>
     );
 };
